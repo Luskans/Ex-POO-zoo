@@ -1,0 +1,80 @@
+body {
+  margin: 0;
+  padding: 0;
+}
+
+.field {
+  width: 80%;
+  height: 100vh;
+}
+.field .aside {
+  background-color: #90eca5;
+  width: 10%;
+  height: 100%;
+}
+.field .aside__time {
+  width: 100%;
+  height: 20%;
+}
+.field .aside__time div {
+  width: 80%;
+  height: 30px;
+  background-color: #fdfffe;
+}
+.field .aside__employees {
+  width: 100%;
+  height: 80%;
+}
+.field .aside__employees .aside__employee {
+  width: 80px;
+  height: 80px;
+  background-color: #d2f7da;
+}
+.field .main {
+  background-color: rgb(166, 240, 183);
+  width: 90%;
+  height: 100%;
+  display: grid;
+  grid-gap: 20px;
+  grid-template-columns: repeat(3, 1fr);
+  grid-template-rows: repeat(3, 1fr);
+  padding: 30px;
+}
+.field .main .enclosure {
+  background-color: #d2f7da;
+  position: relative;
+  display: grid;
+  grid-gap: 30px;
+  grid-template-columns: repeat(3, 1fr);
+  grid-template-rows: repeat(2, 1fr);
+  padding: 20px;
+}
+.field .main .enclosure__name {
+  position: absolute;
+  bottom: 0;
+  left: 0;
+  width: 90px;
+  height: 25px;
+  background-color: #fdfffe;
+}
+.field .main .enclosure__animal {
+  border: 2px solid white;
+  border-radius: 10px;
+}
+
+.infos {
+  width: 20%;
+  height: 100vh;
+}
+.infos .preview {
+  width: 100%;
+  height: 100%;
+  background-color: #e9e07a;
+}
+.infos .log {
+  width: 100%;
+  height: 100%;
+  background-color: rgb(247, 250, 179);
+}
+
+/*# sourceMappingURL=style.css.map */
