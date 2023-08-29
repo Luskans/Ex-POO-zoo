@@ -4,11 +4,11 @@ abstract class Employee {
     protected string $name;
     protected int $age;
     protected string $sexe;
-    protected int $cost;
+    protected int $cost = 200;
     protected int $salary;
-    protected string $temper;
+    protected string $temper = "Fénéant";
     protected string $image;
-    protected int $energy;
+    protected int $energy = 10;
     protected int $maxEnergy;
 
     //////// GETTER & SETTER ////////

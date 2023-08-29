@@ -4,14 +4,22 @@ abstract class Animal {
     protected string $name;
     protected int $height;
     protected int $weight;
-    protected bool $isHungry;
-    protected bool $isSleeping;
-    protected bool $isSick;
-    protected bool $isDangereous;
-    protected int $cost;
+    protected bool $isHungry = false;
+    protected bool $isSleeping = false;
+    protected bool $isSick = false;
+    protected int $price;
     protected int $income;
     protected string $image;
-    protected int $dying;
+    protected int $dying = 0;
+
+    public function __construct(string $name, int $height, int $weight, int $price, int $income, string $image) {
+        $this->setName($name);
+        $this->setHeight($height);
+        $this->setWeight($weight);
+        $this->setPrice($price);
+        $this->setIncome($income);
+        $this->setImage($image);
+    }
 
     //////// GETTER & SETTER ////////
 
@@ -69,21 +77,12 @@ abstract class Animal {
         return $this;
     }
 
-    public function getIsDangereous() {
-        return $this->isDangereous;
+    public function Price() {
+        return $this->price;
     }
 
-    public function setIsDangereous($isDangereous) {
-        $this->isDangereous = $isDangereous;
-        return $this;
-    }
-
-    public function Cost() {
-        return $this->cost;
-    }
-
-    public function setCost($cost) {
-        $this->cost = $cost;
+    public function setPrice($price) {
+        $this->price = $price;
         return $this;
     }
 
@@ -91,7 +90,7 @@ abstract class Animal {
         return $this->income;
     }
 
-    public function setRent($income) {
+    public function setIncome($income) {
         $this->income = $income;
         return $this;
     }

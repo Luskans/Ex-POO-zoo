@@ -1,9 +1,9 @@
 <?php
 
-class Aviary extends Enclosure {
+class Normal extends Enclosure {
 
     public function __construct(string $name, int $price) {
-        parent::__construct($name, $price, "Aviary", "./utilities/images/assets/aviary.jpg");
+        parent::__construct($name, $price, "Normal", "./utilities/images/assets/normal.jpg");
     }
 
     //////// GETTER & SETTER ////////

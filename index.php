@@ -22,7 +22,7 @@
 
 <body class="d-flex">
     <section class="field d-flex">
-        <?php include './vues/main_display.php' ?>
+        <?php $_SESSION['zoo'] === "" ? include './vues/display_intro.php' : include './vues/display_zoo.php'; ?>
     </section>
 
     <section class="infos d-flex flex-column">

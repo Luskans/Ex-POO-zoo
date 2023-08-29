@@ -1,13 +1,19 @@
 <?php
 
-class Enclosure {
+abstract class Enclosure {
     protected string $name;
-    protected int $maxCapacity;
-    protected int $cleanliness;
-    protected int $numberAnimals;
-    protected string $climat;
-    protected int $cost;
-    protected int $costExtend;
+    protected int $cleanliness = 10;
+    protected array $animalsList = [];
+    protected int $price;
+    protected string $type;
+    protected string $image;
+
+    public function __construct(string $name, int $price, string $type, string $image) {
+        $this->setName($name);
+        $this->setPrice($price);
+        $this->setType($type);
+        $this->setImage($image);
+    }
 
     //////// GETTER & SETTER ////////
 
@@ -20,57 +26,48 @@ class Enclosure {
         return $this;
     }
 
-    public function getMaxCapacity() {
-        return $this->maxCapacity;
-    }
-
-    public function setMaxCapacity($maxCapacity) {
-        $this->maxCapacity = $maxCapacity;
-        return $this;
-    }
-
     public function getCleanliness() {
         return $this->cleanliness;
     }
 
-    public function setCleanlines($cleanlines) {
-        $this->cleanliness = $cleanlines;
+    public function setCleanliness($cleanliness) {
+        $this->cleanliness = $cleanliness;
         return $this;
     }
 
-    public function getNumberAnimals() {
-        return $this->numberAnimals;
+    public function getAnimalsList() {
+        return $this->animalsList;
     }
 
-    public function setNumberAnimals($numberAnimals) {
-        $this->numberAnimals = $numberAnimals;
+    public function setAnimalsList($animalsList) {
+        $this->animalsList[] = $animalsList;
         return $this;
     }
 
-    public function getClimat() {
-        return $this->climat;
+    public function getPrice() {
+        return $this->price;
     }
 
-    public function setClimat($climat) {
-        $this->climat = $climat;
+    public function setPrice($price) {
+        $this->price = $price;
         return $this;
     }
 
-    public function getCost() {
-        return $this->cost;
+    public function getType() {
+        return $this->type;
     }
 
-    public function setCost($cost) {
-        $this->cost = $cost;
+    public function setType($type) {
+        $this->type = $type;
         return $this;
     }
 
-    public function getCostExtend() {
-        return $this->costExtend;
+    public function getImage() {
+        return $this->image;
     }
 
-    public function setCostExtend($costExtend) {
-        $this->costExtend = $costExtend;
+    public function setImage($image) {
+        $this->image = $image;
         return $this;
     }
 
@@ -81,16 +78,45 @@ class Enclosure {
 
     }
 
-    public function build() {
+    public function buyAnimal(object $animal) {
+        $this->getAnimalsList()[] = $animal;
+    }
+
+    public function sellAnimal(object $animal) {
+        $objectArray = $this->getAnimalsList(); 
+        foreach ($objectArray as $key => $obj) {
+            if ($obj->getName() === $animal->getName()) {
+                unset($objectArray[$key]);
+                break;
+            }
+        }
+    }
+
+    public function moveAnimal(object $animal, object $enclosure) {
+        $sourceArray = $this->getAnimalsList();
+        $targetArray = $enclosure->getAnimalsList();
+        foreach ($sourceArray as $key => $object) {
+            if ($object->getName() === $animal->getName()) {
+                unset($sourceArray[$key]);
+                $targetArray[] = $object;
+                break;
+            }
+        }
+    }
+    
+    public function showAnimals() {
 
     }
 
-    public function destroy() {
-
-    }
-
-    public function extend() {
-
+    public function checkName(string $name) {
+        $existingName = false;
+        $objectArray = $this->getAnimalsList(); 
+        foreach ($objectArray as $object) {
+            if ($object->getName() === $name) {
+                $existingName = true;
+            }
+        }
+        return $existingName;
     }
 
 }

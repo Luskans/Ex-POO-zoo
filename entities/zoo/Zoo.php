@@ -29,7 +29,7 @@ class Zoo {
     }
 
     public function setEmployeesList($employeesList) {
-        $this->employeesList = $employeesList;
+        $this->employeesList[] = $employeesList;
         return $this;
     }
 
@@ -38,7 +38,7 @@ class Zoo {
     }
 
     public function setEnclosuresList($enclosuresList) {
-        $this->enclosuresList = $enclosuresList;
+        $this->enclosuresList[] = $enclosuresList;
         return $this;
     }
 
@@ -97,14 +97,8 @@ class Zoo {
         }
     }
 
-    public function showEmployees() {
-        $employes = $this->getEmployeesList();
-        foreach ($employees as $employee) {
-            
-        }
-    }
-
     public function buyEnclosure(object $enclosure) {
+        if ($enclosure->get)
         $this->getEnclosuresList()[] = $enclosure;
     }
 
@@ -117,8 +111,25 @@ class Zoo {
             }
         }
     }
-    
-    public function showEnclosures() {
 
+    public function checkName(string $name) {
+        $existingName = false;
+        $objectArray = $this->getEnclosuresList(); 
+        foreach ($objectArray as $object) {
+            if ($object->getName() === $name) {
+                $existingName = true;
+            }
+        }
+        return $existingName;
     }
+
+    public function findEnclosure(string $name):object {
+        $objectArray = $this->getEnclosuresList(); 
+        foreach ($objectArray as $key => $object) {
+            if ($object->getName() === $name) {
+                return ($objectArray[$key]);
+            }
+        }
+    }
+
 }
