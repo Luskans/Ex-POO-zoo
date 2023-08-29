@@ -82,15 +82,42 @@ abstract class Enclosure {
         $this->getAnimalsList()[] = $animal;
     }
 
+    // public function sellAnimal(object $animal) {
+    //     $objectArray = $this->getAnimalsList(); 
+    //     foreach ($objectArray as $object) {
+    //         if ($object->getName() === $animal->getName()) {
+    //             unset($object);
+    //             break;
+    //         }
+    //     }
+    // }
+
+    // public function sellAnimal(object $animal) {
+    //     $objectArray = $this->getAnimalsList(); 
+    //     foreach ($objectArray as $key => $object) {
+    //         if ($object->getName() === $animal->getName()) {
+    //             unset($objectArray[$key]);
+    //             break;
+    //         }
+    //     }
+    //     // Mettez à jour la liste des animaux avec la liste modifiée
+    //     $this->setAnimalsList(array_values($objectArray));
+    // }
+
     public function sellAnimal(object $animal) {
         $objectArray = $this->getAnimalsList(); 
-        foreach ($objectArray as $key => $obj) {
-            if ($obj->getName() === $animal->getName()) {
-                unset($objectArray[$key]);
+        foreach ($objectArray as $object) {
+            if ($object->getName() === $animal->getName()) {
+                unset($object);
                 break;
             }
         }
+        // Mettez à jour la liste des animaux avec la liste modifiée
+        $this->setAnimalsList($objectArray);
     }
+
+
+
 
     public function moveAnimal(object $animal, object $enclosure) {
         $sourceArray = $this->getAnimalsList();
@@ -117,6 +144,15 @@ abstract class Enclosure {
             }
         }
         return $existingName;
+    }
+
+    public function findAnimal(string $name):object {
+        $objectArray = $this->getAnimalsList(); 
+        foreach ($objectArray as $object) {
+            if ($object->getName() === $name) {
+                return ($object);
+            }
+        }
     }
 
 }

@@ -77,7 +77,7 @@ abstract class Animal {
         return $this;
     }
 
-    public function Price() {
+    public function getPrice() {
         return $this->price;
     }
 
@@ -125,5 +125,6 @@ abstract class Animal {
     public function showStats() {
 
     }
+    
   
 }

@@ -3,7 +3,11 @@
 require('../utilities/config/autoload.php');
 
 session_start();
+
+$_SESSION['buyEnclosureError'] = "";
+$_SESSION['sellEnclosureError'] = "";
 $_SESSION['buyAnimalError'] = "";
+$_SESSION['sellAnimalError'] = "";
 
 if ($_POST['animal'] === 'Cow') {
     $price = 100;
@@ -22,48 +26,39 @@ if ($_POST['animal'] === 'Cow') {
 }
 
 
-
-
-
 if (!empty($_POST['name']) && !empty($_POST['animal']) && !empty($_POST['enclosureName'])) {
 
-    if ($_SESSION['zoo']->getMoney() >= $_POST['price']) {
+    if ($_SESSION['zoo']->getMoney() >= $price) {
 
-        foreach ($_SESSION['zoo']->getEnclosuresList() as $enclosure) {
+        $enclosure = $_SESSION['zoo']->findEnclosure($_POST['enclosureName']);
 
-            foreach ($enclosure->getAnimalsList() as $animal) {
+        if ($enclosure && !$enclosure->checkName($_POST['name'])) {
 
-                if (!$animal->checkName()) {
+            $_SESSION['zoo']->setMoney($_SESSION['zoo']->getMoney() - $price);
 
-                    if ($_POST['animal'] === "Boar") {
-                        $_SESSION['zoo']->setMoney($_SESSION['zoo']->getMoney() - $price);
-                        $_SESSION['zoo']->findEnclosure($_POST['enclosureName'])->setAnimalsList(new Boar($_POST['name']));
-                    }
-                    if ($_POST['type'] === "Cow") {
-                        $_SESSION['zoo']->setMoney($_SESSION['zoo']->getMoney() - $price);
-                        $_SESSION['zoo']->findEnclosure($_POST['enclosureName'])->setAnimalsList(new Cow($_POST['name']));
-                    }
-                    if ($_POST['type'] === "Crab") {
-                        $_SESSION['zoo']->setMoney($_SESSION['zoo']->getMoney() - $price);
-                        $_SESSION['zoo']->findEnclosure($_POST['enclosureName'])->setAnimalsList(new Crab($_POST['name']));
-                    }
-                    if ($_POST['type'] === "Eagle") {
-                        $_SESSION['zoo']->setMoney($_SESSION['zoo']->getMoney() - $price);
-                        $_SESSION['zoo']->findEnclosure($_POST['enclosureName'])->setAnimalsList(new Eagle($_POST['name']));
-                    }
+            if ($_POST['animal'] === 'Cow') {
+                $enclosure->setAnimalsList(new Cow($_POST['name']));
 
-                } else {
-                    $_SESSION['buyAnimalError'] = "An animal with this name already exist.";
-                }
+            } elseif ($_POST['animal'] === 'Boar') {
+                $enclosure->setAnimalsList(new Boar($_POST['name']));
+
+            } elseif ($_POST['animal'] === 'Crab') {
+                $enclosure->setAnimalsList(new Crab($_POST['name']));
+
+            } elseif ($_POST['animal'] === 'Eagle') {
+                $enclosure->setAnimalsList(new Eagle($_POST['name'])); 
             }
+
+        } else {
+            $_SESSION['buyAnimalError'] = "An animal with this name already exists or the enclosure doesn't exist.";
         }
-        
+
     } else {
-        $_SESSION['buyAnimalError'] = "Sorry you don't have enough money to buy the animal.";
+        $_SESSION['buyAnimalError'] = "Sorry, you don't have enough money to buy the animal.";
     }
 
 } else {
-    $_SESSION['buyAnimalError'] = "Please, complete all required fields.";
+    $_SESSION['buyAnimalError'] = "Please complete all required fields.";
 }
 
 header('Location: ../index.php');

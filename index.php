@@ -11,31 +11,31 @@
     <script src="./main.js"></script>
 </head>
 
-<?php include './controllers/process_main.php' ?>
-
-<?php
-// echo '<script>';
-// echo 'location.reload(true);'; // Recharge la page en ignorant le cache
-// echo 'localStorage.clear();';   // Vide le localStorage
-// echo '</script>';
-?>
-
 <body class="d-flex">
+
+    <?php include './controllers/process_main.php' ?>
+
     <section class="field d-flex">
         <?php $_SESSION['zoo'] === "" ? include './vues/display_intro.php' : include './vues/display_zoo.php'; ?>
+        <pre>
+            <?php print_r($_SESSION['zoo']); ?>
+        </pre>
     </section>
 
     <section class="infos d-flex flex-column">
         <div class="preview">
-            <?php var_dump($_SESSION['zoo']); ?>
+            
         </div>
         <div class="log">
             <h2>What happen today in 
-            <?php if ($_SESSION['zoo'] != "") { ?>
-                <?= $_SESSION['zoo']->getName(); ?></h2>
-            <?php } ?>
+            <?php if ($_SESSION['zoo'] != ""): ?>
+                <span><?= $_SESSION['zoo']->getName(); ?></span>
+            <?php endif ?>
+            </h2>
         </div>
     </section>
+
+    <?php include('./vues/modals.php'); ?>
        
 </body>
 

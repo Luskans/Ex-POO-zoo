@@ -4,6 +4,9 @@ require('../utilities/config/autoload.php');
 
 session_start();
 $_SESSION['buyEnclosureError'] = "";
+$_SESSION['sellEnclosureError'] = "";
+$_SESSION['buyAnimalError'] = "";
+$_SESSION['sellAnimalError'] = "";
 
 if (!empty($_POST['name']) && !empty($_POST['price']) && !empty($_POST['type'])) {
 
@@ -33,7 +36,7 @@ if (!empty($_POST['name']) && !empty($_POST['price']) && !empty($_POST['type']))
     }
 
 } else {
-    $_SESSION['buyEnclosureError'] = "Please, give a name to your enclosure.";
+    $_SESSION['buyEnclosureError'] = "Please, complete all required fields.";
 }
 
 header('Location: ../index.php');

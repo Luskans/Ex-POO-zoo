@@ -125,9 +125,9 @@ class Zoo {
 
     public function findEnclosure(string $name):object {
         $objectArray = $this->getEnclosuresList(); 
-        foreach ($objectArray as $key => $object) {
+        foreach ($objectArray as $object) {
             if ($object->getName() === $name) {
-                return ($objectArray[$key]);
+                return ($object);
             }
         }
     }

@@ -35,23 +35,19 @@ body {
   width: 90%;
   height: 100%;
   display: grid;
-  grid-gap: 20px;
+  grid-gap: 2%;
   grid-template-columns: repeat(3, 1fr);
   grid-template-rows: repeat(3, 1fr);
-  padding: 30px;
-}
-.field .main .enclosureNew {
-  background-color: red;
-  padding: 20px;
+  padding: 2%;
 }
 .field .main .enclosure {
   background-color: #d2f7da;
   position: relative;
   display: grid;
-  grid-gap: 30px;
+  grid-gap: 3%;
   grid-template-columns: repeat(3, 1fr);
   grid-template-rows: repeat(2, 1fr);
-  padding: 20px;
+  padding: 2%;
 }
 .field .main .enclosure--new {
   background-color: transparent;
@@ -66,9 +62,11 @@ body {
   height: 25px;
   background-color: #fdfffe;
 }
-.field .main .enclosure__animal {
-  border: 2px solid white;
-  border-radius: 10px;
+.field .main .enclosure__animal img {
+  width: 100%;
+  height: auto;
+  max-width: 70px;
+  max-height: 70px;
 }
 
 .modal-body img {
@@ -76,6 +74,10 @@ body {
   height: 100%;
   max-width: 80px;
   max-height: 80px;
+}
+
+.btn-outline-danger span {
+  text-decoration: line-through;
 }
 
 .infos {

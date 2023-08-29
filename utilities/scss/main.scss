@@ -39,24 +39,21 @@ body {
         width: 90%;
         height: 100%;
         display: grid;
-        grid-gap: 20px;
+        grid-gap: 2%;
         grid-template-columns: repeat(3, 1fr);
         grid-template-rows: repeat(3, 1fr);
-        padding: 30px;
+        padding: 2%;
 
-        .enclosureNew {
-            background-color: red;
-            padding: 20px;
-        }
+        
 
         .enclosure {
             background-color: lighten(rgb(166, 240, 183), 10);
             position: relative;
             display: grid;
-            grid-gap: 30px;
+            grid-gap: 3%;
             grid-template-columns: repeat(3, 1fr);
             grid-template-rows: repeat(2, 1fr);
-            padding: 20px;
+            padding: 2%;
 
             &--new {
                 background-color: transparent;
@@ -74,10 +71,16 @@ body {
             }
 
             &__animal {
+                img {
+                    width: 100%;
+                    height: auto;
+                    max-width: 70px;
+                    max-height: 70px;
+                }
                 // width: 70px;
                 // height: 70px;
-                border: 2px solid white;
-                border-radius: 10px;
+                // border: 2px solid white;
+                // border-radius: 10px;
             }
         }
     }
@@ -89,6 +92,12 @@ body {
         height: 100%;
         max-width: 80px;
         max-height: 80px;
+    }
+}
+
+.btn-outline-danger {
+    & span {
+        text-decoration: line-through; 
     }
 }
 
